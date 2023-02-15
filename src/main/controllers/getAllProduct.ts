@@ -4,12 +4,14 @@ import { errorResult } from '../utils/error'
 
 export class GetAllProductController {
 
+    constructor(private getProductUseCase: GetProductsUsecases) {}
+
     async handle(req: Request, res: Response) {
         const query = req.query
         try {
-            const products = await new GetProductsUsecases().getAllProducts()
+            const products = await this.getProductUseCase.getAllProducts()
             if (req.query) {
-                const filteredProducts = await new GetProductsUsecases().getProductFiltered(query)
+                const filteredProducts = await this.getProductUseCase.getProductFiltered(query)
                 return res.status(200).json(filteredProducts);
             }
             res.status(200).json(products);

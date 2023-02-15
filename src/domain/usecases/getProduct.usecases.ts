@@ -1,11 +1,9 @@
-import { IProduct, IProductRepository } from "../interfaces/product.interface"
-import { ProductRepository } from "../../infra/repositories/addProduct.repository"
+import { IProductRepository } from "../interfaces/product.interface"
 
 export class GetProductsUsecases {
-    private repository: IProductRepository
-    constructor() {
-        this.repository = new ProductRepository()
-    }
+    
+    constructor(private repository: IProductRepository) {}
+    
     async getAllProducts() {
         return await this.repository.getAll()
     }
