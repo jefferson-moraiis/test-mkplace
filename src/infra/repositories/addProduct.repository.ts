@@ -1,9 +1,8 @@
 import { IProduct, IProductRepository } from "../../domain/interfaces/product.interface"
 import { ProductModel } from "../database/mongodb/models/products.model"
 export class ProductRepository implements IProductRepository {
-    async add(data: IProduct): Promise<boolean> {
-        await ProductModel.create(data);
-        return true
+    async add(data: IProduct): Promise<IProduct> {
+        return await ProductModel.create(data);
     }
     async getById(id: string): Promise<IProduct> {
         return await ProductModel.findById(id);

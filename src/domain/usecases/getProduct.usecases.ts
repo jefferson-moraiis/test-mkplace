@@ -8,11 +8,9 @@ export class GetProductsUsecases {
         this.repository = new ProductRepository()
     }
     async getAllProducts(){
-        const data = await this.repository.getAll()  
-        return Product.create(data)
+        return await this.repository.getAll()  
     }
     async getProductById(id:string){
-        const data = await this.repository.getById(id) 
-        return Product.create(data)
+        return await this.repository.getById(id) 
     }
 }

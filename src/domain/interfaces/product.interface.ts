@@ -9,7 +9,7 @@ export interface IProduct {
 }
 
 export interface IProductRepository {
-    add: (product: IProduct) => Promise<boolean>
+    add: (product: IProduct) => Promise<IProduct>
     getAll(): Promise<IProduct[]>
     getById(id: string): Promise<IProduct>
     update(product: IProduct): Promise<IProduct>

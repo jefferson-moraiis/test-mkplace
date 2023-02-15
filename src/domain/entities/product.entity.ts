@@ -7,14 +7,16 @@ export class Product {
   createdAt?: Date
   updatedAt?: Date
 
-  private constructor(product: Product) {
-    return Object.assign(this, {product});
+  private constructor({ name, brand, vendor, price, id, createdAt, updatedAt }: Product) {
+    return Object.assign(this, {
+      name, brand, vendor, price, id, createdAt, updatedAt
+    });
   }
 
-  static create({name,brand,vendor,price,id,createdAt,updatedAt}: Product) {
-    return new Product({name,brand,vendor,price,id,createdAt,updatedAt})
+  static create({ name, brand, vendor, price, id, createdAt, updatedAt }: Product) {
+    return new Product({ id,name, brand, vendor, price, createdAt, updatedAt })
   }
 
-  
+
 }
 

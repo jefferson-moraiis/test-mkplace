@@ -8,7 +8,7 @@ export class AddProductsUsecases {
         this.repository = new ProductRepository()
     }
     async createProduct(product: IProduct){
-        const data = Product.create(product)
+        const data = await Product.create(product)
         return await this.repository.add(data)  
     }
 }
