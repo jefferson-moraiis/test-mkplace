@@ -11,8 +11,10 @@ export class Product {
     return Object.assign(this, {product});
   }
 
-  static create({name,brand,vendor,price}: Product) {
-    return new Product({name,brand,vendor,price})
+  static create({name,brand,vendor,price,id,createdAt,updatedAt}: Product) {
+    return new Product({name,brand,vendor,price,id,createdAt,updatedAt})
   }
+
+  
 }
 
