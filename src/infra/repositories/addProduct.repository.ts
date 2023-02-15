@@ -1,20 +1,25 @@
 import { IProduct, IProductRepository } from "../../domain/interfaces/product.interface"
-
-
+import { ProductModel } from "../database/mongodb/models/products.model"
 export class ProductRepository implements IProductRepository {
-    async add(product: IProduct): Promise<boolean> {
+    async add(data: IProduct): Promise<boolean> {
+        await ProductModel.create(data);
         return true
-    }
-    async getAll(): Promise<IProduct> {
-        return new Promise<IProduct>((resolve, reject) => {})
     }
     async getById(id: string): Promise<IProduct> {
-        return new Promise<IProduct>((resolve, reject) => {})
+        return await ProductModel.findById(id);
+    }
+    async getAll(): Promise<IProduct[]> {
+        return await ProductModel.find();
     }
     async update(product: IProduct): Promise<IProduct> {
-        return new Promise<IProduct>((resolve, reject) => {})
+        return await ProductModel.findByIdAndUpdate(product.id, 
+            { $set: { ...product, updatedAt: Date.now() } }, {
+            returnOriginal: false
+        });
     }
-    async delete(id:string): Promise<boolean> {
+    async delete(id: string): Promise<boolean> {
+        await ProductModel.findByIdAndDelete(id)
         return true
     }
+
 }
