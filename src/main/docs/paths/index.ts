@@ -1,0 +1,5 @@
+export * from './addProduct.path'
+export * from './getAllProduct.path'
+export * from './getByIdProduct.path'
+export * from './updateProduct.path'
+export * from './deleteProduct.path'
