@@ -1,14 +1,25 @@
-import { IProductRepository } from "../interfaces/product.interface"
+import { IProduct, IProductRepository } from "../interfaces/product.interface"
+import CacheUtil from "../../main/utils/cache"
+import { Product } from "../entities/product.entity";
 
 export class GetProductsUsecases {
-    
-    constructor(private repository: IProductRepository) {}
-    
+
+    private cache;
+    constructor(private repository: IProductRepository) {
+        this.cache = CacheUtil
+    }
+
     async getAllProducts() {
         return await this.repository.getAll()
     }
     async getProductById(id: string) {
-        return await this.repository.getById(id)
+        const cache = this.cache.get(id)
+        if(cache){
+            return cache
+        }
+        const product = await await this.repository.getById(id)
+        await this.cache.set(id,product)
+        return product
     }
     async getProductFiltered(query) {
         let filter = []
