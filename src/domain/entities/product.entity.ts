@@ -9,13 +9,15 @@ export class Product {
 
   private constructor({ name, brand, vendor, price, id, createdAt, updatedAt }: Product) {
     return Object.assign(this, {
-      name, brand, vendor, price, id, createdAt, updatedAt
+      id, name, brand, vendor, price, createdAt, updatedAt
     });
   }
 
   static create({ name, brand, vendor, price, id, createdAt, updatedAt }: Product) {
     return new Product({ id,name, brand, vendor, price, createdAt, updatedAt })
   }
+
+  
 
 
 }

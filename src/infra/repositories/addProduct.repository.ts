@@ -1,4 +1,4 @@
-import { IProduct, IProductRepository } from "../../domain/interfaces/product.interface"
+import { IProduct, IProductFilter, IProductRepository } from "../../domain/interfaces/product.interface"
 import { ProductModel } from "../database/mongodb/models/products.model"
 export class ProductRepository implements IProductRepository {
     async add(data: IProduct): Promise<IProduct> {
@@ -9,6 +9,9 @@ export class ProductRepository implements IProductRepository {
     }
     async getAll(): Promise<IProduct[]> {
         return await ProductModel.find();
+    }
+    async getFiltered(filter: []): Promise<IProduct[]> {
+        return await ProductModel.find({$or:filter});
     }
     async update(product: IProduct): Promise<IProduct> {
         return await ProductModel.findByIdAndUpdate(product.id, 
